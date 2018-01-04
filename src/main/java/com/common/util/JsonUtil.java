@@ -1,7 +1,6 @@
 package com.common.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -47,23 +46,7 @@ public class JsonUtil {
         return null;
     }
 
-    /**
-     * JSON字符串转集合
-     * @param str
-     * @param collectionClass
-     * @param elementClasses
-     * @param <T>
-     * @return
-     */
-    public static <T> T toObject(String str,Class<?> collectionClass,Class<?>... elementClasses){
-        JavaType javaType = objectMapper.getTypeFactory().constructParametrizedType(collectionClass,collectionClass,elementClasses);
-        try {
-            return objectMapper.readValue(str,javaType);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 
     /**
      * 分页查JSON串
@@ -89,7 +72,6 @@ public class JsonUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ArrayList<Student> students = toObject(jsonString1,ArrayList.class,Student.class);
 
         HashMap<String,String> map = (HashMap<String, String>) toObject(jsonString,Map.class);
 //        System.out.println(toStr(map));
